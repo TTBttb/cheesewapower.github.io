@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>html5 canvas绚丽3d星空飞行穿梭动画特效_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
+    <meta name="keywords" content="飞行动画,星空,星空穿梭,canvas,html5,jquery,宇宙星空穿梭动画">
+    <meta name="description" content="这是一款使用html5 canvas和jQuery制作的绚丽3d星空飞行穿梭动画特效。该3d星空特效模拟了飞船在宇宙星空中快速穿梭的动画场景，效果非常逼真。" />
+    <link rel="stylesheet" href="http://www.htmleaf.com/templets/default/css/common.css"> 
+    <link rel="stylesheet" type="text/css" href="">
+    <link rel="shortcut icon" href="http://www.htmleaf.com/favicon.ico">
+    <link rel="apple-touch-icon" href="http://www.htmleaf.com/templets/default/images/ico/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://www.htmleaf.com/templets/default/images/ico/apple-touch-icon-72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://www.htmleaf.com/templets/default/images/ico/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="http://www.htmleaf.com/templets/default/images/ico/apple-touch-icon-144.png">
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header class="">
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.htmleaf.com/"><img src="http://www.htmleaf.com/templets/default/images/logo.png" alt="jQuery之家-自由分享jQuery、html5、css3的插件库"> </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="http://www.htmleaf.com/jQuery/" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-pagelines"></i> jQuery库 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="http://www.htmleaf.com/jQuery/pubuliuchajian/"><i class="fa fa-rub"></i> 瀑布流插件</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/shijuecha/"><i class="fa fa-eye-slash"></i> 视觉差滚动效果 </a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Menu-Navigation/" class="noDecoration"><i class="fa fa-list"></i> 菜单和导航</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Slideshow-Scroller/" class="noDecoration"><i class="fa fa-film"></i> 幻灯片和轮播图</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Image-Effects/" class="noDecoration"><i class="fa fa-photo"></i> 图片效果</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Form/" class="noDecoration"><i class="fa fa-check-square-o"></i> 表单</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Tooltips/" class="noDecoration"><i class="fa fa-comment"></i> 工具提示</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Table/" class="noDecoration"><i class="fa fa-table"></i> 表格</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Rating-Star-Rating/" class="noDecoration"><i class="fa fa-star-half-o"></i> 评分和星级</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Tabs/" class="noDecoration"><i class="fa fa-folder"></i> 选项卡</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Accordion/" class="noDecoration"><i class="fa fa-reorder"></i> 手风琴</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Lightbox-Dialog/" class="noDecoration"><i class="fa fa-comments"></i> Lightbox和对话框</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Text-Link-Effects/" class="noDecoration"><i class="fa fa-chain"></i> 文本和超链接</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Layout-Interface/" class="noDecoration"><i class="fa fa-list-alt"></i> 布局和界面</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Calendar-Date-Time-picker/" class="noDecoration"><i class="fa fa-calendar"></i> 日期时间选择器</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Color-Picker/" class="noDecoration"><i class="fa fa-flask"></i> 颜色选择器</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Chart/" class="noDecoration"><i class="fa fa-bar-chart"></i> 图表</a></li>
+            <li><a href="http://www.htmleaf.com/jQuery/Buttons-Icons/" class="noDecoration"><i class="fa fa-toggle-on"></i> 按钮和图标</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.htmleaf.com/html5/" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-html5"></i> HTML5库 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="http://www.htmleaf.com/html5/html5-canvas/"><i class="fa fa-delicious"></i> Canvas</a></li>
+            <li><a href="http://www.htmleaf.com/html5/SVG/"><i class="fa fa-slideshare"></i> SVG</a></li>
+            <li class="divider"></li>
+            <li><a href="http://www.htmleaf.com/html5/html5donghua/"><i class="fa fa-fighter-jet"></i> HTML5动画</a></li>
+            <li><a href="http://www.htmleaf.com/html5/html5youxi/"><i class="fa fa-soccer-ball-o"></i> HTML5游戏</a></li>
+            <li>
+              <a href="http://www.htmleaf.com/html5/html5muban/"><i class="fa fa-newspaper-o"></i> HTML5模板</a>
+            </li>
+            <li class="divider"></li>
+            <li><a href="http://www.htmleaf.com/html5/yinpinheshipin/"><i class="fa fa-play"></i> 音频视频播放器</a></li>
+          </ul>
+        </li>
+        </li>
+        <li class="dropdown">
+          <a href="http://www.htmleaf.com/css3/" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-css3"></i> CSS3库 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="http://www.htmleaf.com/css3/animation/"><i class="fa fa-flag"></i> CSS3 animation</a>
+            </li>
+            <li>
+              <a href="http://www.htmleaf.com/css3/transform/"><i class="fa fa-joomla"></i> CSS3 transform</a>
+            </li>
+            <li>
+              <a href="http://www.htmleaf.com/css3/transition/"><i class="fa fa-magic"></i> CSS3 transition</a>
+            </li>
+            <li><a href="http://www.htmleaf.com/css3/css3donghua/"><i class="fa fa-bus"></i> CSS3动画</a></li>
+            <li><a href="http://www.htmleaf.com/css3/daohangcaidan/"><i class="fa fa-list-ul"></i> CSS3导航菜单</a></li>
+            <li><a href="http://www.htmleaf.com/css3/ui-design/"><i class="fa fa-slideshare"></i> UI界面设计</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="http://www.htmleaf.com/ziliaoku/" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-puzzle-piece"></i> 资料库 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="http://www.htmleaf.com/ziliaoku/font-awesome/"><span class="input-all input-2"></span><span><i class="fa fa-flag"></i> Font Awesome</span></a>
+            </li>
+            <li>
+              <a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/"><span class="input-all input-2"></span><span><i class="fa fa-graduation-cap"></i> 前端教程</span></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <form name="formsearch" action="http://www.htmleaf.com/plus/search.php" rel="nofollow" id="global_search_form" method="post" class="navbar-form navbar-right">
+        <input type="text" name="q" autocomplete="off" class="form-control" placeholder="搜索从这里开始..." maxlength="60">
+        <input type="submit" class="btn btn-default" value="搜索">
+      </form>
+    </div>
+  </div>
+</nav>
+</header>
+    <!--banner-->
+    <div class="leaf-banner-7">
+      <div class="mi">
+         <h1>
+            html5 canvas绚丽3d星空飞行穿梭动画特效
+          </h1>
+      </div>
+    </div>
+    <!--banner end-->   
+    <!--缩略图和介绍-->
+    <div class="main">
+      <!--导航-->
+      <div class="leaf-article-location-wrap">
+        <div class="leaf-article-location">
+          <strong>当前位置：</strong><a href='http://www.htmleaf.com/'>主页</a> > <a href='http://www.htmleaf.com/html5/'>Html5库</a> > <a href='http://www.htmleaf.com/html5/html5-canvas/'>html5 canvas</a> > html5 canvas绚丽3d星空飞行穿梭动画特效
+        </div>
+      </div>
+      <!--导航结束-->
+      <div class="photo-album">
+        <div class="leaf-photo">
+          <img src="http://img.htmleaf.com/1501/201501171723.jpg"  alt="html5 canvas绚丽3d星空飞行穿梭动画特效" />
+        </div>
+        <div class="photo-album-foot">
+          <span class="leaf-share">
+            <div class="leaf-share-title"><i class="fa fa-paper-plane"></i> 分享：</div>
+            <div class="leaf-share-content">
+              <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_huaban" data-cmd="huaban" title="分享到花瓣"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_hi" data-cmd="hi" title="分享到百度空间"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+            </div>
+          </span>
+        </div>
+      </div>
+      <div class="lb">
+        <div class="lb1">
+          <ul>
+            <dd>
+              <i class="fa fa-tags"></i> 标签：
+              
+                <a href='http://www.htmleaf.com/tags.php?/canvas/'>canvas</a>
+              
+                <a href='http://www.htmleaf.com/tags.php?/html5+canvas/'>html5 canvas</a>
+              
+                <a href='http://www.htmleaf.com/tags.php?/%E7%B2%92%E5%AD%90%E8%BF%90%E5%8A%A8/'>粒子运动</a>
+              
+                <a href='http://www.htmleaf.com/tags.php?/%E9%A3%9E%E8%A1%8C%E5%8A%A8%E7%94%BB/'>飞行动画</a>
+              
+            </dd>
+            <dt></dt>
+          </ul>
+        </div>
+        <div class="lb2">
+          <ul>
+            <h4>
+              插件介绍 
+            </h4>
+            <p>
+              这是一款使用html5 canvas和jQuery制作的绚丽3d星空飞行穿梭动画特效。该3d星空特效模拟了飞船在宇宙星空中快速穿梭的动画场景，效果非常逼真。
+            </p>
+          </ul>
+        </div>
+        <div class="clear"></div>
+        <div class="lb3">
+          <ul>
+            <h4>
+              浏览器兼容性 
+            </h4>
+            <img src="http://www.htmleaf.com/templets/default/picture/llq-04.png" alt="浏览器兼容性">
+          </ul>
+        </div>
+        <div class="lb5">
+          <ul>
+            <dd>
+              <i class="fa fa-clock-o"></i> 时间：2015-01-17
+            </dd>
+            <dt>
+              <i class="fa fa-eye"></i> 阅读：<script src="http://www.htmleaf.com/plus/count.php?view=yes&aid=1221&mid=1" type='text/javascript' language="javascript"></script>
+            </dt>
+          </ul>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <!--缩略图和介绍 end-->
+    <!---->
+    <div class="outer">
+      <div class="main">
+        <!--左边-->
+        <div class="lbar">
+          <div class="inner">
+            <div class="clearfix">
+              <div class="pull-left">
+                <a class="btn btn-primary btn-lg" href="http://www.htmleaf.com/Demo/201501171222.html" role="button" target="_blank"><i class="fa fa-eye"></i> 查看演示</a>
+<a class="btn btn-success btn-lg" href="http://down.htmleaf.com/1501/201501171723.zip" role="button"><i class="fa fa-download"></i> 下载插件</a>
+              </div>
+              <div class="forum-20150402150221 pull-right ml20" style="margin-top:-10px;"><script charset="utf-8" language="JavaScript" type="text/javascript" src="http://103.249.111.179/data/forum-20150402150221.js"></script></div>
+              <div class="pull-right">
+                <button type="button" id="btn-digg" class="btn btn-warning btn-lg"><i class="fa fa-thumbs-up"></i> (<span id="newdigg"><script src="http://www.htmleaf.com/plus/digg.php?id=1221&type=show"></script></span>)</button>
+              </div>
+            </div>
+            <div class="nr"></div>
+            <div style="width:100%;height:90px;margin:10px 0;overflow:hidden;">
+              <script type="text/javascript">
+                  /*760*90 创建于 2015-04-22*/
+                  var cpro_id = "u2063850";
+              </script>
+              <script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+            </div>
+            <!--简要教程-->
+                        <article class="leaf-jian-yao">
+              <header>
+                <h5>简要教程</h5>
+              </header>
+              <div class="ct-post-content">
+                <p>这是一款使用 <a href="http://www.htmleaf.com/html5/" target="_blank">html5</a> canvas和 <a href="http://www.htmleaf.com/jQuery/" target="_blank">jQuery</a> 制作的绚丽3d星空飞行穿梭动画特效。该3d星空飞行特效模拟了飞船在宇宙星空中快速穿梭的动画场景，效果非常逼真。</p>
+                <h3>HTML结构</h3>
+                <p>HTML结构就使用一个<code>canvas</code>即可。</p>     
+                <pre class="brush:html">
+&lt;canvas id="html5_3d_animation"&gt;Internet Explorer 8 Not Supported&lt;/canvas&gt;
+                </pre>
+                <h3>使用方法</h3>
+                <p>首先要引入 jQuery和html5_3d_animation.js文件。</p>
+                <pre class="brush:html">
+&lt;script src="http://libs.useso.com/js/jquery/1.9.0/jquery.min.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="js/html5_3d_animation.js" type="text/javascript"&gt;&lt;/script&gt;
+                </pre>
+                <p>然后使用下面的方法调用该3d星空飞行动画：</p>
+                <pre class="brush:js">
+$(function() {
+    $("#html5_3d_animation").html5_3d_animation({
+        window_width: '600',
+        window_height: '300',
+        window_background: '#00113F',
+        star_count: '1000',
+        star_color: '#FBFFAF',
+        star_depth: '100'
+    });
+});
+                </pre>
+                <h3>参数配置</h3>
+                <p>有一些可用的参数，下面加一说明：</p>
+                <ul>
+                  <li><span class="m">window_width</span>：canvas窗口的宽度。</li>
+                  <li><span class="m"> window_height</span>：canvas窗口的高度。</li>
+                  <li><span class="m">window_background</span>：canvas窗口的背景颜色。</li>
+                  <li><span class="m">star_count</span>：星星的数量。</li>
+                  <li><span class="m">star_color</span>：星星的颜色。</li>
+                  <li><span class="m">star_depth</span>：星空的深度。</li>
+                </ul>        
+              </div>
+            </article> 
+            <!--简要教程-->
+            <div class="alert alert-warning mt25" role="alert">
+              本文版权属于jQuery之家，转载请注明出处：<a href="http://www.htmleaf.com/html5/html5-canvas/201501171221.html">http://www.htmleaf.com/html5/html5-canvas/201501171221.html</a>
+            </div>
+            <div class="leaf-page-nav pt50  minh50 clearfix">
+              <div class="pull-left">上一篇：<a href='http://www.htmleaf.com/html5/html5-canvas/20141229993.html'>html5 canvas逼真下雪场景动画特效</a> </div>
+              <div class="pull-right">下一篇：<a href='http://www.htmleaf.com/html5/html5-canvas/201501301299.html'>html5轻量级炫酷js粒子动画库插件</a> </div>
+            </div>
+            <!--相关插件-->
+            <div class="leaf-box mt45">
+              <div class="leaf-tp leaf-like">
+                <h3>
+                  相关插件 
+                </h3>
+              </div>
+                <div class="row pt30 pb30 minh150">
+                  
+                  <div class="mt30 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                      <div class="col-md-3 col-sm-3 col-xs-3">
+                        <div class="thumbnail leaf-thumb-fix">
+                            <a href="http://www.htmleaf.com/jQuery/Layout-Interface/201506272119.html"><img class="lazy" src="http://www.htmleaf.com/images/pixel.gif" data-original="http://img.htmleaf.com/1506/201506271755.jpg" alt="jQuery和CSS3超绚丽的3D星空动画特效"/></a>
+                            <div class="caption">
+                              <a href="http://www.htmleaf.com/jQuery/Layout-Interface/201506272119.html"><h5>jQuery和CSS3超绚丽的3D星空动画特效</h5></a>
+                            </div>
+                        </div>
+                      </div>
+<div class="col-md-3 col-sm-3 col-xs-3">
+                        <div class="thumbnail leaf-thumb-fix">
+                            <a href="http://www.htmleaf.com/html5/html5-canvas/201505041778.html"><img class="lazy" src="http://www.htmleaf.com/images/pixel.gif" data-original="http://img.htmleaf.com/1505/201505041751.jpg" alt="HTML5 canvas绚丽宇宙星空背景特效jQuery插件"/></a>
+                            <div class="caption">
+                              <a href="http://www.htmleaf.com/html5/html5-canvas/201505041778.html"><h5>HTML5 canvas绚丽宇宙星空背景特效jQuery插件</h5></a>
+                            </div>
+                        </div>
+                      </div>
+<div class="col-md-3 col-sm-3 col-xs-3">
+                        <div class="thumbnail leaf-thumb-fix">
+                            <a href="http://www.htmleaf.com/html5/html5-canvas/20141122568.html"><img class="lazy" src="http://www.htmleaf.com/images/pixel.gif" data-original="http://img.htmleaf.com/1411/201411221755.jpg" alt="html5 canvas纸飞机跟随鼠标飞行动画"/></a>
+                            <div class="caption">
+                              <a href="http://www.htmleaf.com/html5/html5-canvas/20141122568.html"><h5>html5 canvas纸飞机跟随鼠标飞行动画</h5></a>
+                            </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  
+                </div>
+            </div>
+            <!--相关插件结束-->
+ 
+            
+            <!--网友评论-->
+            <div class="leaf-box mt45">
+              <div class="leaf-tp leaf-pinglun">
+                <h3>
+                  网友评论 
+                </h3>
+              </div>
+              <div class="leaf-changyan">
+                  <div id="SOHUCS"></div>
+              </div>
+            </div>
+            <!--网友评论结束-->
+          </div>
+        </div>
+        <!--左边结束-->
+        <!--右边-->
+        <div class="rbar">
+          <ul>
+            <div class="leaf-tuijian">
+              <script type="text/javascript">
+                  var cpro_id = "u2032836";
+              </script>
+              <script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+            </div>
+          </ul>
+          <ul>
+            <h4>热门推荐</h4>
+            <div class="leaf-tuijian">
+              <li>
+                <div class="ct-latest-thumb">
+                    <a href="http://www.htmleaf.com/html5/html5muban/20141126596.html" class="ct-trans">
+                        <img width="50" height="50" src="http://img.htmleaf.com/1411/201411261511.jpg" class="attachment-thumbnail wp-post-image" alt="html5和css3响应式全屏滚动页面切换效果" />
+                    </a>
+                </div>
+                <h3><a href="http://www.htmleaf.com/html5/html5muban/20141126596.html" title="html5和css3响应式全屏滚动页面切换效果" class="">html5和css3响应式全屏滚动页面切换效果</a></h3>
+                <div>2015-03-02</div>
+              </li>
+<li>
+                <div class="ct-latest-thumb">
+                    <a href="http://www.htmleaf.com/jQuery/Menu-Navigation/201502141379.html" class="ct-trans">
+                        <img width="50" height="50" src="http://img.htmleaf.com/1502/201502141811.jpg" class="attachment-thumbnail wp-post-image" alt="基于bootstrap的jQuery多级列表树插件" />
+                    </a>
+                </div>
+                <h3><a href="http://www.htmleaf.com/jQuery/Menu-Navigation/201502141379.html" title="基于bootstrap的jQuery多级列表树插件" class="">基于bootstrap的jQuery多级列表树插件</a></h3>
+                <div>2015-02-14</div>
+              </li>
+<li>
+                <div class="ct-latest-thumb">
+                    <a href="http://www.htmleaf.com/html5/SVG/201503111500.html" class="ct-trans">
+                        <img width="50" height="50" src="http://img.htmleaf.com/1503/201503111640.jpg" class="attachment-thumbnail wp-post-image" alt="7种炫酷HTML5 SVG液态水滴融合动画特效" />
+                    </a>
+                </div>
+                <h3><a href="http://www.htmleaf.com/html5/SVG/201503111500.html" title="7种炫酷HTML5 SVG液态水滴融合动画特效" class="">7种炫酷HTML5 SVG液态水滴融合动画特效</a></h3>
+                <div>2015-03-11</div>
+              </li>
+<li>
+                <div class="ct-latest-thumb">
+                    <a href="http://www.htmleaf.com/css3/css3donghua/201501111153.html" class="ct-trans">
+                        <img width="50" height="50" src="http://img.htmleaf.com/1501/201501111429.jpg" class="attachment-thumbnail wp-post-image" alt="14种CSS3炫酷表单input输入框美化效果" />
+                    </a>
+                </div>
+                <h3><a href="http://www.htmleaf.com/css3/css3donghua/201501111153.html" title="14种CSS3炫酷表单input输入框美化效果" class="">14种CSS3炫酷表单input输入框美化效果</a></h3>
+                <div>2015-01-11</div>
+              </li>
+<li>
+                <div class="ct-latest-thumb">
+                    <a href="http://www.htmleaf.com/jQuery/Layout-Interface/201502171389.html" class="ct-trans">
+                        <img width="50" height="50" src="http://img.htmleaf.com/1502/201502172119.jpg" class="attachment-thumbnail wp-post-image" alt="jQuery轻量级圆形进度指示器插件" />
+                    </a>
+                </div>
+                <h3><a href="http://www.htmleaf.com/jQuery/Layout-Interface/201502171389.html" title="jQuery轻量级圆形进度指示器插件" class="">jQuery轻量级圆形进度指示器插件</a></h3>
+                <div>2015-02-17</div>
+              </li>
+
+            </div>
+            <div class="clearfix"></div>
+          </ul>
+          <ul>
+            <div class="leaf-tuijian">
+              <script type="text/javascript">
+    var cpro_id="u2203397";
+    (window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"250",rsi1:"250",pat:"17",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"",titFS:"14",rss2:"#000000",titSU:"0"}
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>     
+            </div>
+          </ul>
+          <ul>
+            <h4>最新教程</h4>
+            <div class="leaf-tuijian">
+              <li>
+                <div class="ct-latest-thumb">
+                    <a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201507212274.html" class="ct-trans">
+                        <img width="50" height="50" src="http://img.htmleaf.com/1507/201507212115.jpg" class="attachment-thumbnail wp-post-image" alt="HTML5 Canvas：合成模式" />
+                    </a>
+                </div>
+                <h3><a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201507212274.html" title="HTML5 Canvas：合成模式" class="">HTML5 Canvas：合成模式</a></h3>
+                <div>2015-07-21</div>
+              </li>
+<li>
+                <div class="ct-latest-thumb">
+                    <a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201507202267.html" class="ct-trans">
+                        <img width="50" height="50" src="http://img.htmleaf.com/1507/201507202020.jpg" class="attachment-thumbnail wp-post-image" alt="HTML5 Canvas：绘制图片" />
+                    </a>
+                </div>
+                <h3><a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201507202267.html" title="HTML5 Canvas：绘制图片" class="">HTML5 Canvas：绘制图片</a></h3>
+                <div>2015-07-20</div>
+              </li>
+<li>
+                <div class="ct-latest-thumb">
+                    <a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201507172250.html" class="ct-trans">
+                        <img width="50" height="50" src="http://img.htmleaf.com/1507/201507172018.jpg" class="attachment-thumbnail wp-post-image" alt="HTML5 Canvas：绘制文字" />
+                    </a>
+                </div>
+                <h3><a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201507172250.html" title="HTML5 Canvas：绘制文字" class="">HTML5 Canvas：绘制文字</a></h3>
+                <div>2015-07-17</div>
+              </li>
+<li>
+                <div class="ct-latest-thumb">
+                    <a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201507152237.html" class="ct-trans">
+                        <img width="50" height="50" src="http://img.htmleaf.com/1507/201507152125.jpg" class="attachment-thumbnail wp-post-image" alt="HTML5 Canvas：绘制阴影和填充模式" />
+                    </a>
+                </div>
+                <h3><a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201507152237.html" title="HTML5 Canvas：绘制阴影和填充模式" class="">HTML5 Canvas：绘制阴影和填充模式</a></h3>
+                <div>2015-07-15</div>
+              </li>
+<li>
+                <div class="ct-latest-thumb">
+                    <a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201507142230.html" class="ct-trans">
+                        <img width="50" height="50" src="http://img.htmleaf.com/1507/201507142025.jpg" class="attachment-thumbnail wp-post-image" alt="HTML5 Canvas：绘制渐变色" />
+                    </a>
+                </div>
+                <h3><a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201507142230.html" title="HTML5 Canvas：绘制渐变色" class="">HTML5 Canvas：绘制渐变色</a></h3>
+                <div>2015-07-14</div>
+              </li>
+
+            </div>
+            <div class="clearfix"></div>
+          </ul>
+          
+          <ul>
+            <h4>
+              热门标签 
+            </h4>
+            <div class="labe d_tags">
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/3d/'>3d</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/svg/'>svg</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95/'>导航菜单</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E7%84%A6%E7%82%B9%E5%9B%BE/'>焦点图</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E5%93%8D%E5%BA%94%E5%BC%8F/'>响应式</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E5%B9%BB%E7%81%AF%E7%89%87/'>幻灯片</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E8%BD%AE%E6%92%AD%E5%9B%BE/'>轮播图</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E7%BA%AFcss3/'>纯css3</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E5%9B%BE%E7%89%87%E5%B1%95%E7%A4%BA/'>图片展示</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/html5+svg/'>html5 svg</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E6%8C%89%E9%92%AE/'>按钮</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E5%85%A8%E5%B1%8F/'>全屏</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/canvas/'>canvas</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E8%A1%A8%E5%8D%95/'>表单</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E6%9F%A5%E6%89%BE/'>查找</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E8%A7%86%E8%A7%89%E5%B7%AE/'>视觉差</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/3d%E7%BF%BB%E8%BD%AC/'>3d翻转</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E4%BE%A7%E8%BE%B9%E6%A0%8F/'>侧边栏</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E4%BA%8B%E4%BB%B6/'>事件</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/3d%E6%97%8B%E8%BD%AC/'>3d旋转</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E9%BC%A0%E6%A0%87%E6%BB%91%E8%BF%87/'>鼠标滑过</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E5%B1%9E%E6%80%A7/'>属性</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/html5+canvas/'>html5 canvas</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E5%9B%BE%E7%89%87%E6%95%88%E6%9E%9C/'>图片效果</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E6%95%B0%E7%BB%84%E5%92%8C%E5%AF%B9%E8%B1%A1%E6%93%8D%E4%BD%9C/'>数组和对象操作</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E6%89%8B%E9%A3%8E%E7%90%B4/'>手风琴</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/'>事件对象</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E6%96%87%E5%AD%97%E7%89%B9%E6%95%88/'>文字特效</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E8%8F%9C%E5%8D%95/'>菜单</a>
+              </li>
+              
+              <li>
+                <a href='http://www.htmleaf.com/tags.php?/%E5%9B%BE%E7%89%87%E5%88%87%E6%8D%A2/'>图片切换</a>
+              </li>
+                           
+              <div class="df"></div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div><!--out end-->
+    <!--模态框-->
+    <div id="mymodel" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">请不要重复顶贴</h4>
+          </div>
+          <div class="modal-body">
+            您已经顶过了哦！
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--模态框-->
+    <!---->
+    <div style="display: none;" id="rocket-to-top">
+      <div style="opacity:0;display: block;" class="level-2"></div>
+      <div class="level-3"></div>
+    </div>
+    <!--footer-->
+    <!--foot start-->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="hi-footer mlra oh pt30  c333">
+        <div class="leaf-foot-content">
+        <p class="mb10">
+          <a href="http://www.htmleaf.com/about/About_Us.html" target="_blank" rel="nofollow">关于我们</a><span class="c999 ml10 mr10">|</span><a href="http://www.htmleaf.com/about/Contact_Us.html" target="_blank" rel="nofollow">联系我们</a><span class="c999 ml10 mr10">|</span><a href="http://www.htmleaf.com/about/mianzeshengming.html" target="_blank" rel="nofollow">免责声明</a><span class="c999 ml10 mr10">|</span><a href="http://www.htmleaf.com/about/yijianfankui.html" target="_blank" rel="nofollow">意见反馈</a><span class="c999 ml10 mr10">|</span><a href="http://www.htmleaf.com/sitemap.html" target="_blank" rel="nofollow">网站地图</a>
+        </p>
+        <p>友情链接：<a href="http://www.htmleaf.com/" title="jQuery之家">jQuery之家</a> | <a href="http://www.aseoe.com/" target="_blank" title="WEB前端开发">WEB前端开发</a> | <a href="http://www.hicss.net/" target="_blank" title="海玉’s Blog">海玉’s Blog</a> | <a href="http://www.huiyi8.com/chajian/" target="_blank" title="jQuery插件">jQuery插件</a> | <a href="http://www.w3cui.com/" target="_blank" title="W3cui">W3cui</a> | <a href="http://www.mubanxiaowu.com/" target="_blank" title="织梦模板下载">织梦模板下载</a></p>
+        <p>jQuery之家-htmleaf.com自由分享各种<a href="http://www.htmleaf.com/jQuery/">jQuery</a>、<a href="http://www.htmleaf.com/html5/">HTML5</a>、<a href="http://www.htmleaf.com/css3/">CSS3等前端开发插件。</a></p>
+        <p>
+          备案号：桂ICP备14007998号-1 | CopyRight&copy;2014-2015 Inc.All Right Reserved htmleaf.com jQuery之家 <i class="fa fa-leaf"></i> 版权所有&nbsp;&nbsp;<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe7a3e6b56f1bd183761873eec17147ca' type='text/javascript'%3E%3C/script%3E"));
+</script>
+&nbsp;
+          <script language="javascript" type="text/javascript" src="http://js.users.51.la/17362262.js"></script>
+<noscript><a href="http://www.51.la/?17362262" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/17362262.asp" style="border:none" /></a></noscript>
+        </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!--foot end-->
+    <!--footer-->
+    <script type="text/javascript" src="http://www.htmleaf.com/templets/default/js/leaf.js"></script>
+    <script type="text/javascript" src=""></script>
+    <script>
+      (function(){
+        var appid = 'cyrl0V7NJ',
+        conf = 'prod_48eea519eebb853d9125275d79a1318a';
+        var doc = document,
+        s = doc.createElement('script'),
+        h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+        s.type = 'text/javascript';
+        s.charset = 'utf-8';
+        s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+        h.insertBefore(s,h.firstChild);
+        window.SCS_NO_IFRAME = true;
+      })()
+    </script> 
+     <script type="text/javascript">
+      $(function(){
+        $("#btn-digg").on("click",function(e){
+        digg = $.cookie("digg");
+        console.info(digg);
+        hasid = false;
+        if(digg != null){
+          diggs = digg.split(',');
+          for (var i = diggs.length - 1; i >= 0; i--) {
+            if(diggs[i] == 1221){
+              $("#mymodel").modal('show');
+              return;
+            }
+          };
+          digg = digg+","+1221;
+          hasid = true;
+        }else{
+          digg = 1221;
+          hasid = true;
+        }
+        $.cookie("digg", digg);
+        if(hasid){
+          anp(e);
+            pfz = $("#newdigg").text();
+            id = 1221;
+            $.ajax({
+               type: "GET",
+               url: "http://www.htmleaf.com/plus/digg.php?id="+id+"&pfz="+pfz+"&type=digg",
+               success: function(data){
+                 $("#newdigg").text(data);
+               }
+            });
+        }
+              function anp(e){
+              var $i=$("<b>").html("+"+"<i class='fa fa-heart-o'></i>");
+              var x=e.pageX,y=e.pageY;
+              $i.css({
+              top:y-20,left:x,
+              position:"absolute",color:"#E94F06"
+              });
+              $("body").append($i);
+                $i.animate({top:y-180,opacity:0,"font-size":"2.1em"},1500,function(){
+              $i.remove();
+              });
+                e.stopPropagation();
+              }         
+          });              
+      });
+    </script>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","huaban","tsina","hi","weixin","douban","bdysc","qzone","renren","tqq","bdxc","kaixin001","tqf","tieba","tsohu","bdhome","sqq","thx","qq","ibaidu","taobao","baidu","sohu","t163","qy","meilishuo","mogujie","diandian","leho","share189","duitang","hx","tfh","fx","youdao","sdo","qingbiji","ifeng","people","xinhua","ff","mail","kanshou","isohu","yaolan","wealink","xg","ty","iguba","fbook","twi","deli","s51","s139","linkedin","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+  </body>
+</html>
